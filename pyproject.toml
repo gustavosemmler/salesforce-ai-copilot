@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "salesforce-ai-copilot"
+version = "0.1.0"
+description = "AI copilot for Salesforce orgs: an MCP server + RAG over Apex code + a Claude-powered chat agent."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Gustavo Semmler" }]
+dependencies = [
+    "mcp>=2.0",
+    "simple-salesforce>=1.12",
+    "chromadb>=1.0",
+    "anthropic>=2.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+sf-copilot = "sf_copilot.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["sf_copilot*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
